@@ -1,0 +1,17 @@
+太平洋军事文章页	pacificMilitaryArticle
+搜狗渠道	sougouChannel
+搜狗浏览器push	sougouBrowserPush
+神马卡片	shenmaCard
+无线banner	wirelessBanner
+hao123WAP站	hao123WapSite
+hao123本地	hao123Local
+金立手机浏览器	jinliBrowser
+金立开机push渠道	jinliStartupPushChannel
+金立翻翻	jinliFanfan
+电信无线	telecomWireless
+360onebox	360onebox
+2345名站文章页	2345SiteArticle
+116114导航	116114Nav
+高德地图	gaodeMap
+上海热线	shanghaiHotline
+掌上大学文章页	HandheldUniversityArticle

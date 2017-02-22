@@ -1,0 +1,111 @@
+1 日期：20150819 16:49 
+      版本号：
+      修改内容：修改runBase.sh 将/media/mediaDaily.sh  加到/contentScore/csMain.sh 之后
+2 日期：20150824 15:45 
+      版本号：
+      修改内容：StringStringWritable 中      
+      public boolean equals(Object o) {
+        if (o == null && !(o instanceof StringStringWritable)){
+            return false;
+        }
+        StringStringWritable other = (StringStringWritable)o;
+        return this.first==other.getFirst()&& this.second.equals(other.getSecond());
+    }
+      修改为：
+      public boolean equals(Object o) {
+        if (o == null && !(o instanceof StringStringWritable)){
+            return false;
+        }
+        StringStringWritable other = (StringStringWritable)o;
+        return this.first.equals(other.getFirst()) && this.second.equals(other.getSecond());
+    }
+    
+3 日期：20150825 10:25 
+      版本号：
+      修改内容： 修改dailyWeblog.sh：
+      ${HADOOP} jar ${JAR} com.netease.weblogOffline.common.DataExporter ${WEBLOG_DC_RESULT_HDFS_DIR} $yesterday http://buzz099x.hz.youdao.com:30088/expdata/importData.do
+      改为：${HADOOP} jar ${JAR} com.netease.weblogOffline.common.DataExporter ${WEBLOG_DC_RESULT_HDFS_DIR} $yesterday http://buzz096x.hz.youdao.com:30066/expdata/importData.do     
+      添加：  /usr/bin/rsync -au /home/weblog/webAnalysis/data/list/ 10.130.10.96::dcList/pro6/
+4 日期：20150825 18:52 
+      版本号：
+      修改内容：修改dailyWeblog.sh：
+      ${HADOOP} jar ${JAR} com.netease.weblogOffline.common.DataExporter ${WEBLOG_DC_RESULT_HDFS_DIR} $yesterday http://buzz096x.hz.youdao.com:30066/expdata/importData.do
+      改为：${HADOOP} jar ${JAR} com.netease.weblogOffline.common.DataExporter ${WEBLOG_DC_RESULT_HDFS_DIR} $yesterday http://datacube.ws.netease.com/expdata/importData.do     
+      
+5 日期：20150827 11:17 
+      版本号：   
+      修改内容：修改 ChangeChannel.sh：
+      添加：#导数据到DC部分
+      
+6 日期：20150827 17:47 
+      版本号：   
+      修改内容：修改 亲子频道正则
+7 日期：20150901 11:02 
+      版本号：   
+      修改内容：跟帖分端统计  GenTieChannelSourceCountUvMR  GenTieChannelTopurlMR  
+        dailyWeblog.sh：添加：
+        sh $baseDir/gentieinfo/gentieinfo.sh $yesterday
+        ${HADOOP} fs -text ${WEBLOG_OTHER_RESULT_HDFS_DIR}GenTieChannelSourceCountUv/$yesterday/p* |awk -F'\t' '{print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t"$6"\t"$7}' | sort -k 1 -nr > $listDataDest/GenTieChannelSourceCount$yesterday
+        ${HADOOP} fs -text ${WEBLOG_OTHER_RESULT_HDFS_DIR}GenTieChannelSourceCountUv/$yesterday/p* |awk -F'\t' '{print $1"\t"$8"\t"$9"\t"$10"\t"$11"\t"$12"\t"$13}' | sort -k 1 -nr > $listDataDest/GenTieChannelSourceUv$yesterday
+        ${HADOOP} fs -text ${WEBLOG_OTHER_RESULT_HDFS_DIR}GenTieChannelTopurlTopN/$yesterday/p* |awk -F'\t' '{print $1"\t"$2"\t"$3}'> $listDataDest/GenTieChannelTopurlTopN$yesterday
+        
+
+ 8 日期：20150911 11:15 
+      版本号：   
+      修改内容： bigdatahouse 大数据仓库 上线
+ 9 日期：20151008 11:15 
+      版本号：   
+      修改内容：  Q4修改正则
+      
+10  日期：20151102 9:15 
+      版本号：   
+      修改内容：目录结构和存储结构做了调整
+      
+11  日期：20151104 14:13 
+      版本号：   
+      修改内容：增加getGenTieBaseAndCheck.sh
+      
+12  日期：20151109 18:05 
+      版本号：   
+      修改内容：common中增加GenTieBaseMergeMR计算，增加getPhotoSetAndCheck.sh、getGenTieVoteLogAndCheck.sh
+13  日期：20151116 10:46
+      版本号：   
+      修改内容：common中增加Content_3gMergeMR计算、cms接口数据
+      
+14  日期：20151116 18:05
+      版本号：   
+      修改内容：zyCheck中增加devilfishLogClassification、Common中加toDc.sh
+    
+15  日期：20151123 10:30
+      版本号：   
+      修改内容：common中增加PhotoSetMergeMR计算
+16  日期：20151126 16:45
+      版本号：   
+      修改内容：common中增加文章、专题、订阅数据拉取
+17  日期：20151127 9:45
+      版本号：   
+      修改内容：common中增加文章、专题的增量计算
+18  日期：20151201 10:56
+      版本号：   
+      修改内容：common中增加视频数据的调http接口->转成"\t"分隔（字段间\t替换）写到本地->put hadoop -> 合并
+
+19  日期：20151201 11:18
+      版本号：   
+      修改内容：图集的key改为channel_setid
+20  日期：20151216 11:00
+      版本号：   
+      修改内容：hive加wap数据分区，修改跟帖顶踩IP
+21  日期：20151221 10:23
+      版本号：   
+      修改内容：数据仓库中DailyUrlInfoVector3MR上线
+22  日期：20160114 14:28
+      版本号：   
+      修改内容：媒体系统的统计数据，推送一IP改成106.38.231.28
+23  日期：20160301 16:15
+      版本号：   
+      修改内容：修改章鱼日志的hadoop存放位置 
+24  日期：20160307 15:53
+      版本号：   
+      修改内容：切换跟帖目录为新跟帖
+
+      

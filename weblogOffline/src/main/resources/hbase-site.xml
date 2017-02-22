@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<configuration>
+
+    <property>
+        <name>local.realm</name>
+        <value>HADOOP.HZ.NETEASE.COM</value>
+    </property>
+    <property>
+        <name>hbase.zookeeper.quorum</name>
+        <value>hbase0.photo.163.org,hbase1.photo.163.org,hbase2.photo.163.org</value>
+    </property>
+    <property>
+        <name>zookeeper.znode.parent</name>
+        <value>/hbase4</value>
+    </property>
+
+    <!-- security configuration -->
+    <property>
+        <name>hbase.security.authentication</name>
+        <value>kerberos</value>
+    </property>
+    <property>
+        <name>hbase.security.authorization</name>
+        <value>true</value>
+    </property>
+    <property>
+        <name>hbase.regionserver.kerberos.principal</name>
+        <value>hbase/_HOST@${local.realm}</value>
+    </property>
+    <property>
+        <name>hbase.master.kerberos.principal</name>
+        <value>hbase/_HOST@${local.realm}</value>
+    </property>
+
+    <!-- performance tuning -->
+    <property>
+        <name>hbase.rpc.timeout</name>
+        <value>300000</value>
+    </property>
+    <property>
+        <name>hbase.client.write.buffer</name>
+        <value>1048576</value>
+    </property>
+    <property>
+        <name>hbase.client.pause</name>
+        <value>1000</value>
+    </property>
+    <property>
+        <name>hbase.client.scanner.caching</name>
+        <value>10000</value>
+    </property>
+    <property>
+        <name>hbase.client.retries.number</name>
+        <value>10</value>
+    </property>
+
+    <!-- originally in core-site.xml -->
+    <property>
+        <name>hadoop.security.authorization</name>
+        <value>true</value>
+    </property>
+    <property>
+        <name>hadoop.security.authentication</name>
+        <value>kerberos</value>
+    </property>
+
+</configuration>
